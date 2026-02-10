@@ -14,9 +14,19 @@
  * limitations under the License.
  */
 
-module "mongodb" {
-  source = "../.."
+module "mongo_db" {
 
-  project_id  = var.project_id
-  bucket_name = var.bucket_name
+ source = "../../modules"
+ atlas_project_name = var.atlas_project_name
+ suffix = var.suffix
+ atlas_org_id = var.atlas_org_id
+ cluster_name = var.cluster_name
+ instance_size = var.instance_size
+ atlas_region = var.atlas_region
+ mongo_db_major_version = var.mongo_db_major_version
+ user_invite_list = var.user_invite_list
+ database_user = var.database_user
+ network_whitelist = var.network_whitelist
+
+
 }

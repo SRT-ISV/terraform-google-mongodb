@@ -51,8 +51,8 @@ resource "mongodbatlas_project_invitation" "project_invite" {
 }
 
 resource "mongodbatlas_database_user" "database_user" {
-  username           = base64decode(var.database_user.database_user_name)
-  password           = base64decode(var.database_user.database_user_password)
+  username           = var.database_user.database_user_name
+  password           = var.database_user.database_user_password
   project_id         = mongodbatlas_project.project.id
   auth_database_name = "admin"
 

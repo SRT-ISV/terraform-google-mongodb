@@ -14,12 +14,89 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "The ID of the project in which to provision resources."
-  type        = string
+variable "mongodbatlas_public_key" {
+ type    = string
+ default = ""
 }
 
-variable "bucket_name" {
-  description = "The name of the bucket to create."
-  type        = string
+variable "mongodbatlas_private_key" {
+ type    = string
+ default = ""
+}
+
+variable "gcp_region" {
+ type    = string
+ default = "northamerica-northeast1"
+}
+
+variable "gcp_zone" {
+ type    = string
+ default = "northamerica-northeast1-a"
+}
+
+variable "suffix" {
+ type    = string
+ default = "s1"
+}
+
+variable "atlas_region" {
+ type    = string
+ default = "NORTH_AMERICA_NORTHEAST_1"
+}
+
+
+variable "user_invite_list" {
+ type    = string
+ default = "xyz@abc.com" #e.g. "abs@xyz.com"
+}
+
+variable "atlas_project_name" {
+ type    = string
+ default = "prj2"
+}
+
+variable "atlas_org_id" {
+ type    = string
+ default = ""
+}
+
+variable "cluster_name" {
+ type    = string
+ default = "lz-cluster1"
+}
+
+
+variable "instance_size" {
+ type    = string
+ default = "M10"
+}
+
+variable "mongo_db_major_version" {
+ type    = string
+ default = "7.0"
+}
+
+variable "database_user" {
+    description = "MongoDB Database User"
+    type = object({
+        database_user_name = string
+        database_user_password = string
+    })
+    sensitive = true
+        default = {
+    database_user_name     = "admin" #"YWRtaW4="
+    database_user_password = "admin" #"YWRtaW4="
+  }
+}
+
+variable "network_whitelist" {
+    type = object({
+        enable_whitelist = optional(bool, false)
+        ip_address = optional(list(string))
+        network_cidr = optional(string)
+    })
+        default = {
+        enable_whitelist = true
+        network_cidr = "0.0.0.0/0"
+    }
 }

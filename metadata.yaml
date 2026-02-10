@@ -1,0 +1,116 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-mongodb
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: terraform-google-mongodb
+    source:
+      repo: https://github.com/SRT-ISV/terraform-google-mongodb.git
+      sourceType: git
+    description:
+      tagline: This is an auto-generated module.
+      detailed: "This module was generated from "
+      preDeploy: To deploy this blueprint you must have an active billing account and billing permissions.
+    icon: assets/icon.png
+    costEstimate:
+      description: Blueprint cost details
+      url: https://cloud.google.com/products/calculator?id=02fb0c45-cc29-4567-8cc6-f72ac9024add
+  content:
+    architecture:
+      diagramUrl: https://www.link-to-architecture-diagram.com
+      description:
+        - 1. Architecture description step no. 1
+        - 2. Architecture description step no. 2
+        - 3. Architecture description step no. N
+    documentation:
+      - title: Hosting a Static Website
+        url: https://cloud.google.com/storage/docs/hosting-static-website
+    examples:
+      - name: simple_example
+        location: examples/simple_example
+  interfaces:
+    variables:
+      - name: mongodbatlas_public_key
+        varType: string
+        defaultValue: ""
+      - name: mongodbatlas_private_key
+        varType: string
+        defaultValue: ""
+      - name: gcp_region
+        varType: string
+        defaultValue: northamerica-northeast1
+      - name: gcp_zone
+        varType: string
+        defaultValue: northamerica-northeast1-a
+      - name: suffix
+        varType: string
+        defaultValue: s1
+      - name: atlas_region
+        varType: string
+        defaultValue: NORTH_AMERICA_NORTHEAST_1
+      - name: user_invite_list
+        varType: string
+        defaultValue: xyz@abc.com
+      - name: atlas_project_name
+        varType: string
+        defaultValue: prj2
+      - name: atlas_org_id
+        varType: string
+        defaultValue: ""
+      - name: cluster_name
+        varType: string
+        defaultValue: lz-cluster1
+      - name: instance_size
+        varType: string
+        defaultValue: M10
+      - name: mongo_db_major_version
+        varType: string
+        defaultValue: "7.0"
+      - name: database_user
+        description: MongoDB Database User
+        varType: |-
+          object({
+                  database_user_name = string
+                  database_user_password = string
+              })
+        defaultValue:
+          database_user_name: admin
+          database_user_password: admin
+      - name: network_whitelist
+        varType: |-
+          object({
+                  enable_whitelist = optional(bool, false)
+                  ip_address = optional(list(string))
+                  network_cidr = optional(string)
+              })
+        defaultValue:
+          enable_whitelist: true
+          network_cidr: 0.0.0.0/0
+    outputs:
+      - name: cluster_id
+  requirements:
+    roles:
+      - level: Project
+        roles:
+          - roles/owner
+    services:
+      - cloudresourcemanager.googleapis.com
+      - storage-api.googleapis.com
+      - serviceusage.googleapis.com

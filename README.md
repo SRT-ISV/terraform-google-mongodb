@@ -35,12 +35,21 @@ Deployment: Y mins
 Basic usage of this module is as follows:
 
 ```hcl
-module "mongodb" {
-  source  = "terraform-google-modules/mongodb/google"
-  version = "~> 0.1"
+module "mongo_db" {
 
-  project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
+ source = "./modules"
+ atlas_project_name = var.atlas_project_name
+ suffix = var.suffix
+ atlas_org_id = var.atlas_org_id
+ cluster_name = var.cluster_name
+ instance_size = var.instance_size
+ atlas_region = var.atlas_region
+ mongo_db_major_version = var.mongo_db_major_version
+ user_invite_list = var.user_invite_list
+ database_user = var.database_user
+ network_whitelist = var.network_whitelist
+
+
 }
 ```
 
@@ -52,14 +61,26 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bucket\_name | The name of the bucket to create | `string` | n/a | yes |
-| project\_id | The project ID to deploy to | `string` | n/a | yes |
+| atlas\_org\_id | n/a | `string` | `""` | yes |
+| atlas\_project\_name | n/a | `string` | `"prj2"` | no |
+| atlas\_region | n/a | `string` | `"NORTH_AMERICA_NORTHEAST_1"` | no |
+| cluster\_name | n/a | `string` | `"lz-cluster1"` | no |
+| database\_user | MongoDB Database User | <pre>object({<br>        database_user_name = string<br>        database_user_password = string<br>    })</pre> | <pre>{<br>  "database_user_name": "admin",<br>  "database_user_password": "admin"<br>}</pre> | no |
+| gcp\_region | n/a | `string` | `"northamerica-northeast1"` | no |
+| gcp\_zone | n/a | `string` | `"northamerica-northeast1-a"` | no |
+| instance\_size | n/a | `string` | `"M10"` | no |
+| mongo\_db\_major\_version | n/a | `string` | `"7.0"` | no |
+| mongodbatlas\_private\_key | n/a | `string` | `""` | yes |
+| mongodbatlas\_public\_key | n/a | `string` | `""` | yes |
+| network\_whitelist | n/a | <pre>object({<br>        enable_whitelist = optional(bool, false)<br>        ip_address = optional(list(string))<br>        network_cidr = optional(string)<br>    })</pre> | <pre>{<br>  "enable_whitelist": true,<br>  "network_cidr": "0.0.0.0/0"<br>}</pre> | no |
+| suffix | n/a | `string` | `"s1"` | no |
+| user\_invite\_list | n/a | `string` | `"xyz@abc.com"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_name | Name of the bucket |
+| cluster\_id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
