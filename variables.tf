@@ -14,15 +14,24 @@
  * limitations under the License.
  */
 
-variable "mongodbatlas_public_key" {
+
+
+variable "atlas_public_key_secret" {
  type    = string
  default = ""
 }
 
-variable "mongodbatlas_private_key" {
+variable "atlas_private_key_secret" {
  type    = string
  default = ""
 }
+
+
+variable "atlas_org_id" {
+ type    = string
+ default = ""
+}
+
 
 variable "gcp_region" {
  type    = string
@@ -55,11 +64,6 @@ variable "atlas_project_name" {
  default = "prj2"
 }
 
-variable "atlas_org_id" {
- type    = string
- default = ""
-}
-
 variable "cluster_name" {
  type    = string
  default = "lz-cluster1"
@@ -76,17 +80,15 @@ variable "mongo_db_major_version" {
  default = "7.0"
 }
 
-variable "database_user" {
-    description = "MongoDB Database User"
-    type = object({
-        database_user_name = string
-        database_user_password = string
-    })
-    sensitive = true
-        default = {
-    database_user_name     = "admin" #"YWRtaW4="
-    database_user_password = "admin" #"YWRtaW4="
-  }
+variable "gcp_project_id" {
+ type    = string
+ default = ""
+}
+
+variable "database_password_secret" {
+  description = "MongoDB User Password secret name"
+  type        = string
+  default = ""
 }
 
 variable "network_whitelist" {

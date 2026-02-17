@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,27 @@
  */
 
 terraform {
-  required_providers {
-    google = {
-      source = "hashicorp/google"
-    }
+required_providers {
+  mongodbatlas = {
+    source  = "mongodb/mongodbatlas"
+    version = "~> 1.0"
   }
-  required_version = ">= 0.13"
+  google = {
+  source  = "hashicorp/google"
+  version = ">= 4.64, < 8"
+  }
+  google-beta = {
+  source  = "hashicorp/google-beta"
+  version = ">= 4.64, < 8"
+  }
+}
+}
+
+
+provider "google" {
+}
+
+provider "mongodbatlas" {
+public_key = data.google_secret_manager_secret_version.atlas_public_key.secret_data
+private_key  = data.google_secret_manager_secret_version.atlas_private_key.secret_data
 }

@@ -47,10 +47,13 @@ spec:
         location: examples/simple_example
   interfaces:
     variables:
-      - name: mongodbatlas_public_key
+      - name: atlas_public_key_secret
         varType: string
         defaultValue: ""
-      - name: mongodbatlas_private_key
+      - name: atlas_private_key_secret
+        varType: string
+        defaultValue: ""
+      - name: atlas_org_id
         varType: string
         defaultValue: ""
       - name: gcp_region
@@ -71,9 +74,6 @@ spec:
       - name: atlas_project_name
         varType: string
         defaultValue: prj2
-      - name: atlas_org_id
-        varType: string
-        defaultValue: ""
       - name: cluster_name
         varType: string
         defaultValue: lz-cluster1
@@ -83,16 +83,13 @@ spec:
       - name: mongo_db_major_version
         varType: string
         defaultValue: "7.0"
-      - name: database_user
-        description: MongoDB Database User
-        varType: |-
-          object({
-                  database_user_name = string
-                  database_user_password = string
-              })
-        defaultValue:
-          database_user_name: admin
-          database_user_password: admin
+      - name: gcp_project_id
+        varType: string
+        defaultValue: ""
+      - name: database_password_secret
+        description: MongoDB User Password secret name
+        varType: string
+        defaultValue: ""
       - name: network_whitelist
         varType: |-
           object({

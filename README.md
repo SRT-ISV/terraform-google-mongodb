@@ -46,9 +46,9 @@ module "mongo_db" {
  atlas_region = var.atlas_region
  mongo_db_major_version = var.mongo_db_major_version
  user_invite_list = var.user_invite_list
- database_user = var.database_user
  network_whitelist = var.network_whitelist
-
+ gcp_project_id = var.gcp_project_id
+ database_password_secret = var.database_password_secret
 
 }
 ```
@@ -62,16 +62,17 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | atlas\_org\_id | n/a | `string` | `""` | yes |
+| atlas\_private\_key\_secret | n/a | `string` | `""` | yes |
 | atlas\_project\_name | n/a | `string` | `"prj2"` | no |
+| atlas\_public\_key\_secret | n/a | `string` | `""` | yes |
 | atlas\_region | n/a | `string` | `"NORTH_AMERICA_NORTHEAST_1"` | no |
 | cluster\_name | n/a | `string` | `"lz-cluster1"` | no |
-| database\_user | MongoDB Database User | <pre>object({<br>        database_user_name = string<br>        database_user_password = string<br>    })</pre> | <pre>{<br>  "database_user_name": "admin",<br>  "database_user_password": "admin"<br>}</pre> | no |
+| database\_password\_secret | MongoDB User Password secret name | `string` | `""` | yes |
+| gcp\_project\_id | n/a | `string` | `""` | yes |
 | gcp\_region | n/a | `string` | `"northamerica-northeast1"` | no |
 | gcp\_zone | n/a | `string` | `"northamerica-northeast1-a"` | no |
 | instance\_size | n/a | `string` | `"M10"` | no |
 | mongo\_db\_major\_version | n/a | `string` | `"7.0"` | no |
-| mongodbatlas\_private\_key | n/a | `string` | `""` | yes |
-| mongodbatlas\_public\_key | n/a | `string` | `""` | yes |
 | network\_whitelist | n/a | <pre>object({<br>        enable_whitelist = optional(bool, false)<br>        ip_address = optional(list(string))<br>        network_cidr = optional(string)<br>    })</pre> | <pre>{<br>  "enable_whitelist": true,<br>  "network_cidr": "0.0.0.0/0"<br>}</pre> | no |
 | suffix | n/a | `string` | `"s1"` | no |
 | user\_invite\_list | n/a | `string` | `"xyz@abc.com"` | no |

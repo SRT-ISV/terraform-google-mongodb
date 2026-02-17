@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-# variable "gcp_project_id" {
-#  type    = string
-#  default = ""
-# }
+variable "gcp_project_id" {
+ type    = string
+ default = ""
+}
 
 variable "gcp_region" {
  type    = string
@@ -87,17 +87,16 @@ variable "user_project_roles" {
  # GROUP_READ_ONLY
 }
 
-variable "database_user" {
-    description = "MongoDB Database User"
-    type = object({
-        database_user_name = string
-        database_user_password = string
-    })
-    sensitive = true
-    default = {
-    database_user_name     = "YWRtaW4="
-    database_user_password = "YWRtaW4="
-  }
+variable "database_user_name" {
+  description = "MongoDB User name"
+  type        = string
+  default = "admin"
+}
+
+variable "database_password_secret" {
+  description = "MongoDB User Password secret name"
+  type        = string
+  default = ""
 }
 
 variable "network_whitelist" {

@@ -20,16 +20,22 @@ required_providers {
     source  = "mongodb/mongodbatlas"
     version = "~> 1.0"
   }
+  google = {
+  source  = "hashicorp/google"
+  version = ">= 4.64, < 8"
+  }
+  google-beta = {
+  source  = "hashicorp/google-beta"
+  version = ">= 4.64, < 8"
+  }
 }
 }
 
 
-# provider "google" {
-#  project = local.project_id#"gcp-pov"
-#  region  = local.gcp_region
-# }
+provider "google" {
+}
 
 provider "mongodbatlas" {
-public_key = var.mongodbatlas_public_key
-private_key  = var.mongodbatlas_private_key 
+public_key = data.google_secret_manager_secret_version.atlas_public_key.secret_data
+private_key  = data.google_secret_manager_secret_version.atlas_private_key.secret_data
 }

@@ -30,18 +30,27 @@ spec:
         atlas_org_id:
           name: atlas_org_id
           title: Atlas Org Id
+        atlas_private_key_secret:
+          name: atlas_private_key_secret
+          title: Atlas Private Key Secret
         atlas_project_name:
           name: atlas_project_name
           title: Atlas Project Name
+        atlas_public_key_secret:
+          name: atlas_public_key_secret
+          title: Atlas Public Key Secret
         atlas_region:
           name: atlas_region
           title: Atlas Region
         cluster_name:
           name: cluster_name
           title: Cluster Name
-        database_user:
-          name: database_user
-          title: Database User
+        database_password_secret:
+          name: database_password_secret
+          title: Database Password Secret
+        gcp_project_id:
+          name: gcp_project_id
+          title: Gcp Project Id
         gcp_region:
           name: gcp_region
           title: Gcp Region
@@ -54,12 +63,6 @@ spec:
         mongo_db_major_version:
           name: mongo_db_major_version
           title: Mongo Db Major Version
-        mongodbatlas_private_key:
-          name: mongodbatlas_private_key
-          title: Mongodbatlas Private Key
-        mongodbatlas_public_key:
-          name: mongodbatlas_public_key
-          title: Mongodbatlas Public Key
         network_whitelist:
           name: network_whitelist
           title: Network Whitelist

@@ -26,7 +26,12 @@ user_invite_list = tolist(split(", ", var.user_invite_list))
 ### No need to change any other values ###
 }
 
-
+data "google_secret_manager_secret_version" "db_secret_password" {
+  count = var.database_password_secret != "" && var.database_password_secret != null ? 1 : 0
+  project = var.gcp_project_id
+  secret  = var.database_password_secret 
+  version = "latest"           
+}
 
 resource "mongodbatlas_project" "project" {
 name   = var.atlas_project_name  
@@ -51,8 +56,8 @@ resource "mongodbatlas_project_invitation" "project_invite" {
 }
 
 resource "mongodbatlas_database_user" "database_user" {
-  username           = var.database_user.database_user_name
-  password           = var.database_user.database_user_password
+  username           = var.database_user_name
+  password           = one(data.google_secret_manager_secret_version.db_secret_password[*].secret_data)
   project_id         = mongodbatlas_project.project.id
   auth_database_name = "admin"
 

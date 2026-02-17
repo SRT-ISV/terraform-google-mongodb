@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
+data "google_secret_manager_secret_version" "atlas_public_key" {
+  project = var.gcp_project_id
+  secret  = var.atlas_public_key_secret 
+  version = "latest"           
+}
+
+data "google_secret_manager_secret_version" "atlas_private_key" {
+  project = var.gcp_project_id
+  secret  = var.atlas_private_key_secret 
+  version = "latest"           
+}
+
 module "mongo_db" {
 
  source = "./modules"
@@ -25,8 +37,8 @@ module "mongo_db" {
  atlas_region = var.atlas_region
  mongo_db_major_version = var.mongo_db_major_version
  user_invite_list = var.user_invite_list
- database_user = var.database_user
  network_whitelist = var.network_whitelist
-
+ gcp_project_id = var.gcp_project_id
+ database_password_secret = var.database_password_secret
 
 }
