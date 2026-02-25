@@ -97,8 +97,9 @@ variable "network_whitelist" {
         ip_address = optional(list(string))
         network_cidr = optional(string)
     })
-        default = {
+    default = {
         enable_whitelist = true
-        network_cidr = "0.0.0.0/0"
+        #network_cidr = "0.0.0.0/0"
+        ip_address =[]
     }
 }

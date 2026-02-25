@@ -26,7 +26,7 @@ spec:
       sourceType: git
     description:
       tagline: This is an auto-generated module.
-      detailed: "This module was generated from "
+      detailed: "This module provisions MongoDB Atlas on GCP using strictly versioned Google Cloud modules (Project Factory v18.2.0, Network v13.1.0, Address v5.0.0, and Secret Manager v0.9.0)."
       preDeploy: To deploy this blueprint you must have an active billing account and billing permissions.
     icon: assets/icon.png
     costEstimate:
@@ -36,9 +36,9 @@ spec:
     architecture:
       diagramUrl: https://www.link-to-architecture-diagram.com
       description:
-        - 1. Architecture description step no. 1
-        - 2. Architecture description step no. 2
-        - 3. Architecture description step no. N
+        - 1. Project is created via Project Factory.
+        - 2. Network and Static IPs are provisioned for whitelisting.
+        - 3. Atlas credentials are securely retrieved from Secret Manager.
     documentation:
       - title: Hosting a Static Website
         url: https://cloud.google.com/storage/docs/hosting-static-website
@@ -50,46 +50,88 @@ spec:
       - name: atlas_public_key_secret
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
+              version: "0.9.0"
+            spec:
+              outputExpr: name
+              inputPath: .
+
       - name: atlas_private_key_secret
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
+              version: "0.9.0"
+            spec:
+              outputExpr: name
+              inputPath: .
+
       - name: atlas_org_id
         varType: string
         defaultValue: ""
+
       - name: gcp_region
         varType: string
         defaultValue: northamerica-northeast1
+
       - name: gcp_zone
         varType: string
         defaultValue: northamerica-northeast1-a
+
       - name: suffix
         varType: string
         defaultValue: s1
+
       - name: atlas_region
         varType: string
         defaultValue: NORTH_AMERICA_NORTHEAST_1
+
       - name: user_invite_list
         varType: string
         defaultValue: xyz@abc.com
+
       - name: atlas_project_name
         varType: string
         defaultValue: prj2
+
       - name: cluster_name
         varType: string
         defaultValue: lz-cluster1
+
       - name: instance_size
         varType: string
         defaultValue: M10
+
       - name: mongo_db_major_version
         varType: string
         defaultValue: "7.0"
+
       - name: gcp_project_id
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-project-factory
+              version: "18.2.0"
+            spec:
+              outputExpr: project_id
+              inputPath: .
+
       - name: database_password_secret
         description: MongoDB User Password secret name
         varType: string
         defaultValue: ""
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
+              version: "0.9.0"
+            spec:
+              outputExpr: name
+              inputPath: .
+
       - name: network_whitelist
         varType: |-
           object({
@@ -99,9 +141,25 @@ spec:
               })
         defaultValue:
           enable_whitelist: true
-          network_cidr: 0.0.0.0/0
+          ip_address: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-network
+              version: "13.1.0"
+            spec:
+              outputExpr: subnets_ips
+              inputPath: ip_address
+
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-address
+              version: "5.0.0"
+            spec:
+              outputExpr: addresses
+              inputPath: ip_address
+
     outputs:
       - name: cluster_id
+
   requirements:
     roles:
       - level: Project
@@ -111,3 +169,5 @@ spec:
       - cloudresourcemanager.googleapis.com
       - storage-api.googleapis.com
       - serviceusage.googleapis.com
+      - compute.googleapis.com
+      - secretmanager.googleapis.com

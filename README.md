@@ -73,7 +73,7 @@ Functional examples are included in the
 | gcp\_zone | n/a | `string` | `"northamerica-northeast1-a"` | no |
 | instance\_size | n/a | `string` | `"M10"` | no |
 | mongo\_db\_major\_version | n/a | `string` | `"7.0"` | no |
-| network\_whitelist | n/a | <pre>object({<br>        enable_whitelist = optional(bool, false)<br>        ip_address = optional(list(string))<br>        network_cidr = optional(string)<br>    })</pre> | <pre>{<br>  "enable_whitelist": true,<br>  "network_cidr": "0.0.0.0/0"<br>}</pre> | no |
+| network\_whitelist | n/a | <pre>object({<br>        enable_whitelist = optional(bool, false)<br>        ip_address = optional(list(string))<br>        network_cidr = optional(string)<br>    })</pre> | <pre>{<br>  "enable_whitelist": true,<br>  "ip_address": []<br>}</pre> | no |
 | suffix | n/a | `string` | `"s1"` | no |
 | user\_invite\_list | n/a | `string` | `"xyz@abc.com"` | no |
 
