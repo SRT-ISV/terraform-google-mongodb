@@ -37,7 +37,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "mongo_db" {
 
- source = "./modules"
+ source = "./modules/mongo"
  atlas_project_name = var.atlas_project_name
  suffix = var.suffix
  atlas_org_id = var.atlas_org_id

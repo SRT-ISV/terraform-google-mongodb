@@ -29,7 +29,7 @@ data "google_secret_manager_secret_version" "atlas_private_key" {
 
 module "mongo_db" {
 
- source = "../../modules"
+ source = "../../modules/mongo"
  atlas_project_name = var.atlas_project_name
  suffix = var.suffix
  atlas_org_id = var.atlas_org_id
