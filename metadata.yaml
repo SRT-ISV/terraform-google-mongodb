@@ -50,7 +50,7 @@ spec:
     variables:
       - name: atlas_public_key_secret
         varType: string
-        defaultValue: ""
+        required: true
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
@@ -61,7 +61,7 @@ spec:
 
       - name: atlas_private_key_secret
         varType: string
-        defaultValue: ""
+        required: true
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
@@ -112,7 +112,7 @@ spec:
 
       - name: project_id
         varType: string
-        defaultValue: ""
+        required: true
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-project-factory
@@ -124,7 +124,7 @@ spec:
       - name: database_password_secret
         description: MongoDB User Password secret name
         varType: string
-        defaultValue: ""
+        required: true
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
@@ -172,3 +172,10 @@ spec:
       - serviceusage.googleapis.com
       - compute.googleapis.com
       - secretmanager.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 4.64, < 8"
+      - source: hashicorp/google-beta
+        version: ">= 4.64, < 8" 
+      - source: mongodb/mongodbatlas
+        version: ">= 1.0, < 2.0"
