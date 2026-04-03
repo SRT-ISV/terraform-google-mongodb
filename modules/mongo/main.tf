@@ -62,7 +62,7 @@ resource "mongodbatlas_database_user" "database_user" {
   auth_database_name = "admin"
 
   roles {
-    role_name     = "readAnyDatabase"
+    role_name     = "readWriteAnyDatabase"
     database_name = "admin"
   }
 }
