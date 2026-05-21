@@ -17,3 +17,22 @@
 output "cluster_id" {
   value = module.mongo_db.cluster_id
 }
+
+output "username" {
+  value = module.mongo_db.username
+}
+
+output "user_password" {
+  sensitive = true
+  value     = module.mongo_db.user_password
+}
+
+
+output "atlas_cluster_connection_string" {
+  value = module.mongo_db.atlas_cluster_connection_string
+}
+
+
+output "mongodb_connection_string" {
+  value = module.mongo_db.mongodb_connection_string
+}
