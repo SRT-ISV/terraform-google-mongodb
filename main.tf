@@ -34,7 +34,7 @@ module "mongo_db" {
  atlas_org_id = var.atlas_org_id
  cluster_name = var.cluster_name
  instance_size = var.instance_size
- atlas_region = var.atlas_region
+ atlas_location = var.atlas_location
  mongo_db_major_version = var.mongo_db_major_version
  user_invite_list = var.user_invite_list
  network_whitelist = var.network_whitelist

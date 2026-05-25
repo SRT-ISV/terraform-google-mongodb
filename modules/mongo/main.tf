@@ -18,7 +18,7 @@ locals {
 
 #project_id       = var.gcp_project_id # Mention your GCP Project ID
 suffix           = var.suffix         # Change the suffix.
-mongo_location   = var.atlas_region   # Change the MongoDB location based on your requirement
+mongo_location   = var.atlas_location   # Change the MongoDB location based on your requirement
 #gcp_region       = var.gcp_region # Change the GCP Region based on your requirement
 #gcp_zone         = var.gcp_zone # Change the GCP Zone based on your requirement
 #user_invite_list = var.user_invite_list # List of users to receive the mongodbatlas project invitation e.g. ["abc@google.com", "cde@google.com"]

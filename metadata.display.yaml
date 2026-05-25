@@ -39,9 +39,9 @@ spec:
         atlas_public_key_secret:
           name: atlas_public_key_secret
           title: Atlas Public Key Secret
-        atlas_region:
-          name: atlas_region
-          title: Atlas Region
+        atlas_location:
+          name: atlas_location
+          title: Atlas Location
         cluster_name:
           name: cluster_name
           title: Cluster Name
@@ -51,12 +51,6 @@ spec:
         gcp_project_id:
           name: project_id
           title: Gcp Project Id
-        gcp_region:
-          name: region
-          title: Gcp Region
-        gcp_zone:
-          name: zone
-          title: Gcp Zone
         instance_size:
           name: instance_size
           title: Instance Size

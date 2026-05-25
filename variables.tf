@@ -37,7 +37,7 @@ variable "suffix" {
  default = "s1"
 }
 
-variable "atlas_region" {
+variable "atlas_location" {
  type    = string
  default = "NORTH_AMERICA_NORTHEAST_1"
 }
