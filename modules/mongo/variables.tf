@@ -19,17 +19,6 @@ variable "project_id" {
  default = ""
 }
 
-variable "region" {
- type    = string
- default = "northamerica-northeast1"
-}
-
-variable "zone" {
- type    = string
- default = "northamerica-northeast1-a"
-}
-
-
 variable "suffix" {
  type    = string
  default = "s1"

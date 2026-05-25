@@ -18,29 +18,18 @@
 
 variable "atlas_public_key_secret" {
  type    = string
- default = ""
+ default = "mongo_public"
 }
 
 variable "atlas_private_key_secret" {
  type    = string
- default = ""
+ default = "mongo_private"
 }
 
 
 variable "atlas_org_id" {
  type    = string
  default = ""
-}
-
-
-variable "region" {
- type    = string
- default = "northamerica-northeast1"
-}
-
-variable "zone" {
- type    = string
- default = "northamerica-northeast1-a"
 }
 
 variable "suffix" {
@@ -61,7 +50,7 @@ variable "user_invite_list" {
 
 variable "atlas_project_name" {
  type    = string
- default = "prj2"
+ default = "prj111"
 }
 
 variable "cluster_name" {
@@ -88,7 +77,7 @@ variable "gcp_project_id" {
 variable "database_password_secret" {
   description = "MongoDB User Password secret name"
   type        = string
-  default = ""
+  default = "mongo_db_pwd"
 }
 
 variable "network_whitelist" {

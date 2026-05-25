@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/SRT-ISV/terraform-google-mongodb.git
       sourceType: git
-    version: 1.0.4  
+    version: 1.0.8  
     description:
       tagline: This is an auto-generated module.
       detailed: "This module provisions MongoDB Atlas on GCP using strictly versioned Google Cloud modules (Project Factory v18.2.0, Network v13.1.0, Address v5.0.0, and Secret Manager v0.9.0)."
@@ -72,35 +72,27 @@ spec:
 
       - name: atlas_org_id
         varType: string
-        defaultValue: ""
-
-      - name: region
-        varType: string
-        defaultValue: northamerica-northeast1
-
-      - name: zone
-        varType: string
-        defaultValue: northamerica-northeast1-a
+        required: true
 
       - name: suffix
         varType: string
-        defaultValue: s1
+        required: true
 
       - name: atlas_region
         varType: string
-        defaultValue: NORTH_AMERICA_NORTHEAST_1
+        required: true
 
       - name: user_invite_list
         varType: string
-        defaultValue: xyz@abc.com
+        required: true
 
       - name: atlas_project_name
         varType: string
-        defaultValue: prj2
+        required: true
 
       - name: cluster_name
         varType: string
-        defaultValue: lz-cluster1
+        required: true
 
       - name: instance_size
         varType: string
@@ -160,6 +152,8 @@ spec:
 
     outputs:
       - name: cluster_id
+      - name: username
+      - name: mongodb_connection_string
 
   requirements:
     roles:

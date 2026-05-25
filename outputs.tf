@@ -35,4 +35,5 @@ output "atlas_cluster_connection_string" {
 
 output "mongodb_connection_string" {
   value = module.mongo_db.mongodb_connection_string
+  sensitive = true
 }
